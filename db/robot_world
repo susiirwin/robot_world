@@ -1,0 +1,59 @@
+---
+robots:
+- id: 2
+  name: Sarah
+  city: Andover
+  state: NJ
+  avatar: 
+  birthday: '2016-08-26'
+  date_hired: '2016-09-24'
+  department: Bathroom Sanitation
+- id: 4
+  name: asd
+  city: asd
+  state: AL
+  avatar: asd
+  birthday: '2016-08-24'
+  date_hired: '2016-08-27'
+  department: Bathroom Sanitation
+- id: 7
+  name: Sam
+  city: Bozeman
+  state: AL
+  avatar: 
+  birthday: '2016-08-31'
+  date_hired: '2016-09-03'
+  department: Bathroom Sanitation
+- id: 8
+  name: Mike
+  city: Dallas
+  state: IL
+  avatar: 
+  birthday: '2016-03-04'
+  date_hired: '2016-08-18'
+  department: Home Science
+- id: 9
+  name: Susi
+  city: San Diego
+  state: CA
+  avatar: 
+  birthday: '2016-08-26'
+  date_hired: '2016-08-27'
+  department: Physics
+- id: 10
+  name: Brian
+  city: Virginia Beach
+  state: MT
+  avatar: 
+  birthday: '2016-08-26'
+  date_hired: '2016-08-27'
+  department: Physics
+- id: 11
+  name: Dan
+  city: Denver
+  state: AR
+  avatar: 
+  birthday: '2016-08-03'
+  date_hired: '2016-08-25'
+  department: Bathroom Sanitation
+total: 11
