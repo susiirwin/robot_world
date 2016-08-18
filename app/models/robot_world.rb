@@ -1,4 +1,3 @@
-require 'yaml/store'
 require_relative 'robot'
 
 class RobotWorld
@@ -9,18 +8,19 @@ class RobotWorld
   end
 
   def create(robot)
-    database.transaction do
-      database['robots'] ||= []
-      database['total'] ||= 0
-      database['total'] += 1
-      database['robots'] << { "id" => database['total'],
-                              "name" => robot[:name],
-                              "city" => robot[:city],
-                              "state" => robot[:state],
-                              "birthday" => robot[:birthday],
-                              "date_hired" => robot[:date_hired],
-                              "department" => robot[:department] }
-    end
+    database.execute("INSERT INTO robots (name, city, state, birthday, date_hired, department) VALUES (?, ?, ?, ?, ?, ?);", robot[:name], robot[:city], robot[:state], robot[:birthday], robot[:date_hired], robot[:department])
+    # database.transaction do
+    #   database['robots'] ||= []
+    #   database['total'] ||= 0
+    #   database['total'] += 1
+    #   database['robots'] << { "id" => database['total'],
+    #                           "name" => robot[:name],
+    #                           "city" => robot[:city],
+    #                           "state" => robot[:state],
+    #                           "birthday" => robot[:birthday],
+    #                           "date_hired" => robot[:date_hired],
+    #                           "department" => robot[:department] }
+    # end
   end
 
   def raw_robots
@@ -54,15 +54,17 @@ class RobotWorld
   end
 
   def destroy(id)
-    database.transaction do
-      database["robots"].delete_if { |robot| robot["id"] == id }
-    end
+    database.execute("DELETE FROM robots WHERE id=?;", id)
+    # database.transaction do
+    #   database["robots"].delete_if { |robot| robot["id"] == id }
+    # end
   end
 
   def delete_all
-    database.transaction do
-      database['robots'] = []
-      database['total'] = 0
-    end
+    database.execute("DELETE FROM robots;")
+    # database.transaction do
+    #   database['robots'] = []
+    #   database['total'] = 0
+    # end
   end
 end
