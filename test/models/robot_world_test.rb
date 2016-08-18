@@ -111,7 +111,7 @@ class RobotWorldTest < Minitest::Test
   end
 
   def test_it_can_find_a_robot_by_id_update_record
-    robot_world.create({
+    robot1 = robot_world.create({
       :name => "New Robot",
       :city => "Erie",
       :state => "CO",
@@ -119,7 +119,7 @@ class RobotWorldTest < Minitest::Test
       :date_hired => "2016-08-29",
       :department => "BioMetrics"
       })
-    robot_world.create({
+    robot2 = robot_world.create({
       :name => "Another New Robot",
       :city => "Boulder",
       :state => "CO",
@@ -128,9 +128,11 @@ class RobotWorldTest < Minitest::Test
       :department => "Physics"
       })
 
-    robot_data = robot["name"]
+    robot_data = { robot: { name: "Ted" } }
+    assert_equal "New Robot"
+    robot_world.update(1, robot_data)
+    assert_equal "Ted", robot1.name
 
-    assert_equal "", robot_world.update(1, robot_data)
 
   end
 

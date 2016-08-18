@@ -32,14 +32,6 @@ robots:
   birthday: '2016-03-04'
   date_hired: '2016-08-18'
   department: Home Science
-- id: 9
-  name: Susi
-  city: San Diego
-  state: AL
-  avatar: 
-  birthday: '2016-07-26'
-  date_hired: '2016-09-27'
-  department: Bathroom Sanitation
 - id: 10
   name: Brian
   city: Virginia Beach
@@ -72,4 +64,11 @@ robots:
   birthday: '2016-08-03'
   date_hired: '2016-08-20'
   department: BioMetrics
-total: 13
+- id: 14
+  name: Yoseph
+  city: Newton
+  state: NJ
+  birthday: '2014-02-13'
+  date_hired: '2016-09-03'
+  department: Home Science
+total: 14
