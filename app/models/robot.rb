@@ -11,6 +11,7 @@ class Robot
     @id = data["id"]
     @name = data["name"]
     @city = data["city"]
+    @state = data["state"]
     @birthday = data["birthday"]
     @date_hired = data["date_hired"]
     @department = data["department"]

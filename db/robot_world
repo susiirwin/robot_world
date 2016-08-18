@@ -3,7 +3,7 @@ robots:
 - id: 2
   name: Sarah
   city: Andover
-  state: NJ
+  state: AL
   avatar: 
   birthday: '2016-08-26'
   date_hired: '2016-09-24'
@@ -35,11 +35,11 @@ robots:
 - id: 9
   name: Susi
   city: San Diego
-  state: CA
+  state: AL
   avatar: 
-  birthday: '2016-08-26'
-  date_hired: '2016-08-27'
-  department: Physics
+  birthday: '2016-07-26'
+  date_hired: '2016-09-27'
+  department: Bathroom Sanitation
 - id: 10
   name: Brian
   city: Virginia Beach
@@ -56,4 +56,20 @@ robots:
   birthday: '2016-08-03'
   date_hired: '2016-08-25'
   department: Bathroom Sanitation
-total: 11
+- id: 12
+  name: Ray
+  city: kajsdajsdas
+  state: other
+  avatar: 
+  birthday: '2015-06-11'
+  date_hired: '2016-08-19'
+  department: Garage Doors
+- id: 13
+  name: Megan
+  city: Denver
+  state: CO
+  avatar: 
+  birthday: '2016-08-03'
+  date_hired: '2016-08-20'
+  department: BioMetrics
+total: 13

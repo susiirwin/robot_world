@@ -17,7 +17,6 @@ class RobotWorld
                               "name" => robot[:name],
                               "city" => robot[:city],
                               "state" => robot[:state],
-                              "avatar" => robot[:avatar],
                               "birthday" => robot[:birthday],
                               "date_hired" => robot[:date_hired],
                               "department" => robot[:department] }
@@ -57,6 +56,13 @@ class RobotWorld
   def destroy(id)
     database.transaction do
       database["robots"].delete_if { |robot| robot["id"] == id }
+    end
+  end
+
+  def delete_all
+    database.transaction do
+      database['robots'] = []
+      database['total'] = 0
     end
   end
 end
