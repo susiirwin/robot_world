@@ -1,5 +1,3 @@
-require_relative 'robot'
-
 class RobotWorld
   attr_reader :database
 

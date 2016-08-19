@@ -3,6 +3,10 @@ require_relative "../test_helper"
 class RobotWorldTest < Minitest::Test
   include TestHelpers
 
+  def current_robot_id
+    robot_world.all.last.id
+  end
+
   def create_robot
     robot_world.create({
       :name => "New Robot",
@@ -20,7 +24,7 @@ class RobotWorldTest < Minitest::Test
 
   def test_it_creates_a_robot
     create_robot
-    robot = robot_world.find(1)
+    robot = robot_world.find(current_robot_id)
     assert_equal "New Robot", robot.name
     assert_equal "Erie", robot.city
     assert_equal "CO", robot.state
@@ -44,23 +48,15 @@ class RobotWorldTest < Minitest::Test
   def test_it_can_find_an_individual_robot_by_id
     2.times { create_robot }
 
-    expected1 = {"id"=>1, "name"=>"New Robot", "city"=>"Erie", "state"=>"CO",
-                "birthday"=>"2016-08-26", "date_hired"=>"2016-08-29",
-                "department"=>"BioMetrics"}
-
-    expected2 = {"id"=>2, "name"=>"New Robot", "city"=>"Erie", "state"=>"CO",
-                "birthday"=>"2016-08-26", "date_hired"=>"2016-08-29",
-                "department"=>"BioMetrics"}
-
-    assert_equal expected1, robot_world.raw_robot(1)
-    assert_equal expected2, robot_world.raw_robot(2)
+    assert_equal 2, number_of_robots
+    assert_instance_of Robot, robot_world.all.last
   end
 
   def test_it_can_return_an_individual_robot_by_id
     2.times { create_robot }
 
-    assert_equal "New Robot", robot_world.find(1).name
-    assert_equal "New Robot", robot_world.find(2).name
+    assert_equal "New Robot", robot_world.find(current_robot_id).name
+    assert_equal "New Robot", robot_world.find(current_robot_id).name
   end
 
   def test_it_can_find_a_robot_by_id_update_record
@@ -85,7 +81,7 @@ class RobotWorldTest < Minitest::Test
     2.times { create_robot }
 
     assert_equal 2, number_of_robots
-    robot_world.destroy(1)
+    robot_world.destroy(current_robot_id)
     assert_equal 1, number_of_robots
   end
 
