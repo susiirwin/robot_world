@@ -41,7 +41,7 @@ class RobotWorldApp < Sinatra::Base
   end
 
   def robot_world
-    if ENV["RACK_ENV"] == "test"
+    if ENV['RACK_ENV'] == "test"
       database = SQLite3::Database.new("db/robot_world_test.db")
     else
       database = SQLite3::Database.new('db/robot_world.rb')
