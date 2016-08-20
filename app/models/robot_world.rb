@@ -36,4 +36,16 @@ class RobotWorld
   def delete_all
     database.execute("DELETE FROM robots;")
   end
+
+  def group_by_departments
+    database.execute("SELECT department, COUNT(id) FROM robots GROUP BY department;")
+  end
+
+  def group_by_states
+    database.execute("SELECT state, COUNT(id) FROM robots GROUP BY state;")
+  end
+
+  def group_by_city
+    database.execute("SELECT city, COUNT(id) FROM robots GROUP BY city;")
+  end
 end

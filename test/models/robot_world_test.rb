@@ -92,4 +92,46 @@ class RobotWorldTest < Minitest::Test
     robot_world.delete_all
     assert_equal 0, number_of_robots
   end
+
+  def test_it_groups_robots_based_on_dept
+    create_robot
+    robot_world.create({
+      :name => "New Robot",
+      :city => "Erie",
+      :state => "CO",
+      :birthday => "2016-08-26",
+      :date_hired => "2016-08-29",
+      :department => "Home Science"
+      })
+
+    assert_equal [{"department"=>"BioMetrics", "COUNT(id)"=>1, 0=>"BioMetrics", 1=>1}, {"department"=>"Home Science", "COUNT(id)"=>1, 0=>"Home Science", 1=>1}], robot_world.group_by_departments
+  end
+
+  def test_it_groups_robots_based_on_states
+    create_robot
+    robot_world.create({
+      :name => "New Robot",
+      :city => "Newton",
+      :state => "NJ",
+      :birthday => "2016-08-26",
+      :date_hired => "2016-08-29",
+      :department => "Home Science"
+      })
+
+      assert_equal [{"state"=>"CO", "COUNT(id)"=>1, 0=>"CO", 1=>1}, {"state"=>"NJ", "COUNT(id)"=>1, 0=>"NJ", 1=>1}], robot_world.group_by_states
+  end
+
+  def test_it_groups_robots_by_City
+    create_robot
+    robot_world.create({
+      :name => "New Robot",
+      :city => "Newton",
+      :state => "NJ",
+      :birthday => "2016-08-26",
+      :date_hired => "2016-08-29",
+      :department => "Home Science"
+      })
+
+      assert_equal [{"city"=>"Erie", "COUNT(id)"=>1, 0=>"Erie", 1=>1}, {"city"=>"Newton", "COUNT(id)"=>1, 0=>"Newton", 1=>1}], robot_world.group_by_city
+  end
 end
