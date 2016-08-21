@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <h2>Data</h2>
+    <h3>Average Age:</h3>
+      <%= @get_robot_average_age %>
+    <h3>Robots Hired Per Year: </h3>
+    <table>
+      <% @group_by_hire_year.each do |date_hired|%>
+        <tr><td><%= date_hired["strftime('%Y', date_hired)"] %>: </td>
+          <td><%= date_hired["COUNT(id)"] %></td>
+        </tr>
+        <% end %>
+    </table>
+
+    <h3>Robots In Each Department: </h3>
+    <table>
+      <% @group_by_department.each do |department|%>
+      <tr>
+        <td><%= department["department"] %>: </td>
+        <td><%= department["COUNT(id)"] %></td>
+        <% end %>
+      </table>
+
+    <h3>Robots In Each City: </h3>
+    <table>
+      <% @group_by_city.each do |city|%>
+      <tr>
+        <td><%= city["city"] %>: </td>
+        <td><%= city["COUNT(id)"] %></td>
+      </tr>
+      <% end %>
+    </table>
+
+    <h3>Robots In Each State: </h3>
+    <table>
+      <% @group_by_state.each do |state|%>
+      <tr>
+        <td><%= state["state"] %>: </td>
+        <td><%= state["COUNT(id)"] %></td>
+    </tr>
+    <% end %>
+  </table>
+  </div>
+</div>

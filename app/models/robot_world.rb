@@ -37,15 +37,23 @@ class RobotWorld
     database.execute("DELETE FROM robots;")
   end
 
-  def group_by_departments
+  def group_by_department
     database.execute("SELECT department, COUNT(id) FROM robots GROUP BY department;")
   end
 
-  def group_by_states
+  def group_by_state
     database.execute("SELECT state, COUNT(id) FROM robots GROUP BY state;")
   end
 
   def group_by_city
     database.execute("SELECT city, COUNT(id) FROM robots GROUP BY city;")
+  end
+
+  def group_by_hire_year
+    database.execute("SELECT strftime('%Y', date_hired), COUNT(id) FROM robots GROUP BY '%Y';")
+  end
+
+  def get_robot_average_age
+    database.execute("SELECT AVG(age) AS age FROM (SELECT (strftime('%Y', 'now') - strftime('%Y', birthday)) - (strftime('%m-%d', 'now') < strftime('%m-%d', birthday)) AS Age FROM robots);")[0]["age"].round(2)
   end
 end

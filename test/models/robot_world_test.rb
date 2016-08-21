@@ -104,7 +104,7 @@ class RobotWorldTest < Minitest::Test
       :department => "Home Science"
       })
 
-    assert_equal [{"department"=>"BioMetrics", "COUNT(id)"=>1, 0=>"BioMetrics", 1=>1}, {"department"=>"Home Science", "COUNT(id)"=>1, 0=>"Home Science", 1=>1}], robot_world.group_by_departments
+    assert_equal [{"department"=>"BioMetrics", "COUNT(id)"=>1, 0=>"BioMetrics", 1=>1}, {"department"=>"Home Science", "COUNT(id)"=>1, 0=>"Home Science", 1=>1}], robot_world.group_by_department
   end
 
   def test_it_groups_robots_based_on_states
@@ -118,7 +118,7 @@ class RobotWorldTest < Minitest::Test
       :department => "Home Science"
       })
 
-      assert_equal [{"state"=>"CO", "COUNT(id)"=>1, 0=>"CO", 1=>1}, {"state"=>"NJ", "COUNT(id)"=>1, 0=>"NJ", 1=>1}], robot_world.group_by_states
+      assert_equal [{"state"=>"CO", "COUNT(id)"=>1, 0=>"CO", 1=>1}, {"state"=>"NJ", "COUNT(id)"=>1, 0=>"NJ", 1=>1}], robot_world.group_by_state
   end
 
   def test_it_groups_robots_by_City
@@ -131,7 +131,61 @@ class RobotWorldTest < Minitest::Test
       :date_hired => "2016-08-29",
       :department => "Home Science"
       })
+      robot_world.create({
+        :name => "New Robot",
+        :city => "Newton",
+        :state => "NJ",
+        :birthday => "2016-08-26",
+        :date_hired => "2016-08-29",
+        :department => "Home Science"
+        })
 
-      assert_equal [{"city"=>"Erie", "COUNT(id)"=>1, 0=>"Erie", 1=>1}, {"city"=>"Newton", "COUNT(id)"=>1, 0=>"Newton", 1=>1}], robot_world.group_by_city
+      expected = [{"city"=>"Erie", "COUNT(id)"=>1, 0=>"Erie", 1=>1}, {"city"=>"Newton", "COUNT(id)"=>2, 0=>"Newton", 1=>2}]
+      assert_equal expected, robot_world.group_by_city
   end
+
+  def test_it_groups_by_hire_year
+    create_robot
+    robot_world.create({
+      :name => "New Robot",
+      :city => "Newton",
+      :state => "NJ",
+      :birthday => "2016-08-26",
+      :date_hired => "2015-08-29",
+      :department => "Home Science"
+      })
+    robot_world.create({
+      :name => "New Robot",
+      :city => "Newton",
+      :state => "NJ",
+      :birthday => "2016-08-26",
+      :date_hired => "2014-08-29",
+      :department => "Home Science"
+      })
+
+    assert_equal [{"strftime('%Y', date_hired)"=>"2014", "COUNT(id)"=>3, 0=>"2014", 1=>3}], robot_world.group_by_hire_year
+  end
+
+  def test_it_can_get_a_robots_age
+    robot_world.create({
+      :name => "New Robot",
+      :city => "Newton",
+      :state => "NJ",
+      :birthday => "2006-08-26",
+      :date_hired => "2016-08-29",
+      :department => "Home Science"
+      })
+      robot_world.create({
+        :name => "New Robot",
+        :city => "Newton",
+        :state => "NJ",
+        :birthday => "1998-08-16",
+        :date_hired => "2016-08-29",
+        :department => "Home Science"
+        })
+    expected = [{"age"=>13.5, 0=>13.5}]
+
+    assert_equal expected, robot_world.get_robot_average_age
+  end
+
 end

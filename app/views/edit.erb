@@ -3,7 +3,6 @@
     <div class="col-md-4">
       <form action="/robots/<%= @robot.id %>" method="POST">
       <input type="hidden" name="_method" value="PUT">
-
       <p>Enter the Robot's name:
       <input type="text" name='robot[name]' value="<%= @robot.name %>"/></p>
       <p>Enter the Robot's City:
