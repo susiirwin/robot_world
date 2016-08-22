@@ -1,0 +1,8 @@
+.jumbotron {
+  background-image: url(../images/kanye.jpg);
+  background-size: cover;
+  margin-bottom: 0px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 600px;
+}
