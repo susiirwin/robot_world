@@ -163,7 +163,9 @@ class RobotWorldTest < Minitest::Test
       :department => "Home Science"
       })
 
-    assert_equal [{"strftime('%Y', date_hired)"=>"2014", "COUNT(id)"=>3, 0=>"2014", 1=>3}], robot_world.group_by_hire_year
+      expected = [{"year"=>"2014", "COUNT(id)"=>1, 0=>"2014", 1=>1}, {"year"=>"2015", "COUNT(id)"=>1, 0=>"2015", 1=>1}, {"year"=>"2016", "COUNT(id)"=>1, 0=>"2016", 1=>1}]
+
+    assert_equal expected, robot_world.group_by_hire_year
   end
 
   def test_it_can_get_a_robots_age
@@ -183,7 +185,7 @@ class RobotWorldTest < Minitest::Test
         :date_hired => "2016-08-29",
         :department => "Home Science"
         })
-    expected = [{"age"=>13.5, 0=>13.5}]
+    expected = 13.5
 
     assert_equal expected, robot_world.get_robot_average_age
   end

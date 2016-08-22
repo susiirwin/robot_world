@@ -50,7 +50,7 @@ class RobotWorld
   end
 
   def group_by_hire_year
-    database.execute("SELECT strftime('%Y', date_hired), COUNT(id) FROM robots GROUP BY '%Y';")
+    database.execute("SELECT strftime('%Y', date_hired) AS year, COUNT(id) FROM robots GROUP BY year;")
   end
 
   def get_robot_average_age

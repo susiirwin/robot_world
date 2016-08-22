@@ -9,7 +9,7 @@
     <div class="col-md-4"><h3>Robots Hired Per Year: </h3>
     <table class="table table-striped">
       <% @group_by_hire_year.each do |date_hired|%>
-        <tr><td><%= date_hired["strftime('%Y', date_hired)"] %>: </td>
+        <tr><td><%= date_hired["year"] %>: </td>
           <td><%= date_hired["COUNT(id)"] %></td>
         </tr>
         <% end %>
